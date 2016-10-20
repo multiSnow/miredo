@@ -21,21 +21,15 @@
 # ***********************************************************************
 
 AC_COPYRIGHT([Copyright (C) 2004-2014 Remi Denis-Courmont])
-AC_INIT(miredo, 1.3.0, miredo-devel_no_bulk_mail@remlab.net)
+AC_INIT([miredo],[1.3.0])
 AC_PREREQ(2.59c)
-INVOCATION="$0 $ac_configure_args"
 
-AS_MESSAGE(checking system...)
-AC_CONFIG_SRCDIR(configure.ac)
-AC_CONFIG_AUX_DIR(admin)
-AC_CONFIG_MACRO_DIR(m4)
-AC_CONFIG_LIBOBJ_DIR(compat)
-AC_CONFIG_HEADERS(config.h)
+AC_CONFIG_SRCDIR(src/miredo.c)
+AC_CONFIG_AUX_DIR([admin])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_LIBOBJ_DIR([compat])
+AC_CONFIG_HEADERS([config.h])
 
-AC_DEFINE_UNQUOTED(PACKAGE_CONFIGURE_INVOCATION, "$INVOCATION",
-                [Define to the command line used to invoke the configure script.])
-RDC_BUILD_HOSTNAME
-AC_CANONICAL_HOST
 
 
 # Checks for programs.
@@ -108,10 +102,6 @@ AS_IF([test "${PTHREAD_LDFAGS}${PTHREAD_LIBS}"], [
 	AC_CHECK_LIB(pthread, pthread_create)
 ])
 
-AC_DEFINE_UNQUOTED(PACKAGE_BUILD, "$build",
-                   [Define to the canonical build-system name])
-AC_DEFINE_UNQUOTED(PACKAGE_HOST, "$host",
-                   [Define to the canonical host-system name])
 
 
 # Checks for header files.

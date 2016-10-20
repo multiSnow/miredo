@@ -26,7 +26,6 @@
 # include <config.h>
 #endif
 
-#include <gettext.h>
 
 #include <stdbool.h>
 #include <time.h>

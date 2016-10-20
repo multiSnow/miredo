@@ -56,8 +56,8 @@ AM_SILENT_RULES([yes])
 
 # Checks for libraries.
 AS_MESSAGE([checking required libraries...])
-AM_GNU_GETTEXT_VERSION([0.19.2])
-AM_GNU_GETTEXT([external])
+#AM_GNU_GETTEXT_VERSION([0.19.2])
+#AM_GNU_GETTEXT([external])
 
 LIBRT=""
 AC_CHECK_LIB(rt, clock_gettime, [LIBRT="-lrt"])
@@ -260,5 +260,6 @@ AH_BOTTOM([#include "compat/fixups.h"])
 
 # END
 AS_MESSAGE(writing results...)
-AC_CONFIG_FILES([Makefile po/Makefile.in Doxyfile])
+#AC_CONFIG_FILES([Makefile po/Makefile.in Doxyfile])
+AC_CONFIG_FILES([Makefile Doxyfile])
 AC_OUTPUT

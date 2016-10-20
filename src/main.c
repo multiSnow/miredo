@@ -24,7 +24,6 @@
 # include <config.h>
 #endif
 
-#include <gettext.h>
 
 #include <stdio.h>
 #include <stdlib.h> /* strtoul(), clearenv() */

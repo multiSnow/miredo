@@ -25,9 +25,6 @@
 
 #define MIREDO_COMPAT_FIXUPS_H 1
 
-#define _( str )		dgettext (PACKAGE_NAME, str)
-#define N_( str )		gettext_noop (str)
-
 #ifdef __cplusplus
 # define EXTERN extern "C"
 #else
@@ -77,3 +74,9 @@ EXTERN int clock_nanosleep (clockid_t id, int flags,
 #ifndef HAVE_FDATASYNC
 EXTERN int fdatasync (int fd);
 #endif
+
+#include <gettext.h>
+//#define _( str )		dgettext (PACKAGE_NAME, str)
+//#define N_( str )		gettext_noop (str)
+#define _(str)		((void) (PACKAGE_NAME), (const char *) (str))
+#define N_(str)		str

@@ -24,7 +24,6 @@
 #endif
 
 #include <assert.h>
-#include <gettext.h>
 
 #include <inttypes.h>
 #include <stdlib.h> // free()

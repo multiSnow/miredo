@@ -33,8 +33,8 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir) -D_REENTRANT \
 	-DLOCALSTATEDIR=\"$(localstatedir)\" \
 	-DPKGLIBEXECDIR=\"$(pkglibexecdir)\"
 
-SUBDIRS = po
-noinst_HEADERS = include/gettext.h
+#SUBDIRS = po
+#noinst_HEADERS = include/gettext.h
 noinst_LTLIBRARIES =
 EXTRA_DIST = autogen.sh Doxyfile.in
 
@@ -107,7 +107,7 @@ ChangeLog:
 
 # m4 macros
 EXTRA_DIST += m4/codeset.m4 m4/fcntl-o.m4 m4/flags.m4 m4/getopt.m4 \
-	m4/gettext.m4 m4/glibc21.m4 m4/glibc2.m4 m4/hostname.m4 m4/iconv.m4 \
+	m4/glibc21.m4 m4/glibc2.m4 m4/hostname.m4 m4/iconv.m4 \
 	m4/intdiv0.m4 m4/intldir.m4 m4/intlmacosx.m4 m4/intl.m4 m4/intmax.m4 \
 	m4/inttypes_h.m4 m4/inttypes-pri.m4 m4/lcmessage.m4 m4/lib-ld.m4 \
 	m4/lib-link.m4 m4/lib-prefix.m4 m4/libtool.m4 m4/lock.m4 \
@@ -115,6 +115,8 @@ EXTRA_DIST += m4/codeset.m4 m4/fcntl-o.m4 m4/flags.m4 m4/getopt.m4 \
 	m4/ltversion.m4 m4/nls.m4 m4/po.m4 m4/printf-posix.m4 m4/progtest.m4 \
 	m4/size_max.m4 m4/sockaddr.m4 m4/stdint_h.m4 m4/threadlib.m4 \
 	m4/uintmax_t.m4 m4/visibility.m4 m4/wchar_t.m4 m4/wint_t.m4 m4/xsize.m4
+
+#EXTRA_DIST += m4/gettext.m4
 
 # Test coverage
 lcov.info:

@@ -23,7 +23,6 @@
 # include <config.h>
 #endif
 
-#include <gettext.h>
 #include <locale.h>
 
 #include <stdio.h>

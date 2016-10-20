@@ -31,6 +31,7 @@ fi
 echo "Autoreconf in $PWD ..."
 
 autoreconf -sfi
+exit $?
 unlink po/Makevars.template
 
 for d in /usr /usr/local /opt/gettext /opt/local/share/gettext \

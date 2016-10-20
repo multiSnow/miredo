@@ -1,6 +1,6 @@
 # getopt.m4
-dnl Copyright © 2003-2004 Rémi Denis-Courmont
-dnl From Rémi Denis-Courmont
+# Copyright © 2003-2004 Rémi Denis-Courmont
+# From Rémi Denis-Courmont
 
 AC_DEFUN([RDC_FUNC_GETOPT_LONG],
 [AC_CHECK_HEADERS(getopt.h)

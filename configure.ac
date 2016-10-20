@@ -1,24 +1,24 @@
-dnl configure.ac - Configure script for miredo
-dnl based on earlier configure.ac from tcpreen by the same author
+# configure.ac - Configure script for miredo
+# based on earlier configure.ac from tcpreen by the same author
 
-dnl Process this file with GNU Autoconf to produce a configure script
+# Process this file with GNU Autoconf to produce a configure script
 
-dnl ***********************************************************************
-dnl *  Copyright © 2004-2013 Rémi Denis-Courmont.                         *
-dnl *  This program is free software; you can redistribute and/or modify  *
-dnl *  it under the terms of the GNU General Public License as published  *
-dnl *  by the Free Software Foundation; version 2 of the license, or (at  *
-dnl *  your option) any later version.                                    *
-dnl *                                                                     *
-dnl *  This program is distributed in the hope that it will be useful,    *
-dnl *  but WITHOUT ANY WARRANTY; without even the implied warranty of     *
-dnl *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               *
-dnl *  See the GNU General Public License for more details.               *
-dnl *                                                                     *
-dnl *  You should have received a copy of the GNU General Public License  *
-dnl *  along with this program; if not, you can get it from:              *
-dnl *  http://www.gnu.org/copyleft/gpl.html                               *
-dnl ***********************************************************************
+# ***********************************************************************
+# *  Copyright © 2004-2013 Rémi Denis-Courmont.                         *
+# *  This program is free software; you can redistribute and/or modify  *
+# *  it under the terms of the GNU General Public License as published  *
+# *  by the Free Software Foundation; version 2 of the license, or (at  *
+# *  your option) any later version.                                    *
+# *                                                                     *
+# *  This program is distributed in the hope that it will be useful,    *
+# *  but WITHOUT ANY WARRANTY; without even the implied warranty of     *
+# *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               *
+# *  See the GNU General Public License for more details.               *
+# *                                                                     *
+# *  You should have received a copy of the GNU General Public License  *
+# *  along with this program; if not, you can get it from:              *
+# *  http://www.gnu.org/copyleft/gpl.html                               *
+# ***********************************************************************
 
 AC_COPYRIGHT([Copyright (C) 2004-2014 Remi Denis-Courmont])
 AC_INIT(miredo, 1.3.0, miredo-devel_no_bulk_mail@remlab.net)
@@ -47,7 +47,7 @@ AC_DEFINE(_APPLE_C_SOURCE, 1, [Define to fix pthread_cancel() on Mac OS X.])
 
 AM_PROG_AR
 
-dnl Work-around for libtool bug (from Darren Salt)
+# Work-around for libtool bug (from Darren Salt)
 LT_PREREQ([2.2.0])
 LT_INIT
 AM_INIT_AUTOMAKE

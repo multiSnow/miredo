@@ -36,6 +36,7 @@ libteredo_common_la_SOURCES = \
 libteredo_common_la_LDFLAGS = -no-undefined
 
 # libteredo.la
+libteredo_la_CFLAGS = $(LIBJUDY_CFLAGS)
 libteredo_la_SOURCES = \
 	libteredo/security.c libteredo/security.h \
 	libteredo/md5.c libteredo/md5.h \
@@ -52,7 +53,7 @@ endif
 libteredo_la_DEPENDENCIES = libteredo/libteredo.sym libteredo-common.la
 libteredo_la_LIBADD = \
 	libteredo-common.la libcompat.la \
-	$(LIBJUDY) $(LIBRT) $(LTLIBINTL)
+	$(LIBJUDY_LIBS) $(LIBRT) $(LTLIBINTL)
 libteredo_la_LDFLAGS = \
 	-no-undefined \
 	-export-symbols $(srcdir)/libteredo/libteredo.sym \

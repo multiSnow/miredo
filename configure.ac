@@ -47,6 +47,9 @@ AC_DEFINE(_APPLE_C_SOURCE, 1, [Define to fix pthread_cancel() on Mac OS X.])
 
 AM_PROG_AR
 
+# Check pkg-config is available
+PKG_PROG_PKG_CONFIG([0.20])
+
 # Work-around for libtool bug (from Darren Salt)
 LT_PREREQ([2.2.0])
 LT_INIT
@@ -150,43 +153,48 @@ LIBS="$LIBS_save"
 AS_MESSAGE([checking optional features...])
 
 # POSIX capabilities
-LIBCAP=""
-AC_CHECK_HEADERS([sys/capability.h], [
-	AC_CHECK_LIB(cap, cap_set_proc, [
-		LIBCAP="-lcap"
-		AC_DEFINE(HAVE_LIBCAP, 1,
-			  [Define to 1 if you have the `cap' library (-lcap).])
-	])
-])
-AC_SUBST(LIBCAP)
-
+PKG_CHECK_MODULES([LIBCAP],[libcap],[have_libcap=yes],[have_libcap=no])
+if test "x$have_libcap" = "xyes"; then
+  AC_DEFINE([HAVE_LIBCAP],[1],[Define to 1 if you have libcap.])
+  save_CFLAGS=$CFLAGS
+  save_CPPFLAGS=$CPPFLAGS
+  save_LIBS=$LIBS
+  CFLAGS="$CFLAGS $LIBCAP_CFLAGS"
+  CPPFLAGS="$CPPFLAGS $LIBCAP_CFLAGS"
+  LIBS="$LIBS $LIBCAP_LIBS"
+  AC_CHECK_FUNCS([cap_set_proc])
+  AC_CHECK_HEADERS([sys/capability.h])
+  CFLAGS=$save_CFLAGS
+  CPPFLAGS=$save_CPPFLAGS
+  LIBS=$save_LIBS
+else
+  AC_MSG_WARN([$LIBCAP_PKG_ERRORS])
+fi
 
 # Judy
-AC_ARG_WITH(Judy,
-	    [AS_HELP_STRING(--with-Judy,
-			    [use Judy dynamic arrays (default auto)])])
-LIBJUDY=""
-AS_IF([test "x${with_Judy}" != "xno"], [
-	AC_CHECK_HEADERS([Judy.h], [
-		AC_CHECK_LIB(Judy, JudyHSIns, [
-			LIBJUDY="-lJudy"
-			AC_DEFINE(HAVE_LIBJUDY, 1,
-				  [Define to 1 if you the `Judy' library (-lJudy).])
-		])
-	])
-	AS_IF([test "x${LIBJUDY}" = "x"], [
-		AS_IF([test "x${with_Judy}" != "x"], [
-			AC_MSG_ERROR([Judy dynamic arrays library missing.])
-		])
-	])
-])
-AS_IF([test "x${LIBJUDY}" = "x"], [
-	AC_CHECK_FUNC([tdestroy],, [
-		AC_MSG_ERROR([Required tdestroy() or Judy dynamic arrays.])
-	])
-])
-AC_SUBST(LIBJUDY)
-
+PKG_CHECK_MODULES([LIBJUDY],[Judy],[have_judy=yes],[have_judy=no])
+if test "x$have_judy" = "xyes"; then
+  AC_DEFINE([HAVE_LIBJUDY], [1], [Define to 1 if you have Judy.])
+  save_CFLAGS=$CFLAGS
+  save_CPPFLAGS=$CPPFLAGS
+  save_LIBS=$LIBS
+  CFLAGS="$CFLAGS $LIBJUDY_CFLAGS"
+  CPPFLAGS="$CPPFLAGS $LIBJUDY_CFLAGS"
+  LIBS="$LIBS $LIBJUDY_LIBS"
+  AC_CHECK_FUNCS([JudyHSIns])
+  AC_CHECK_HEADERS([Judy.h])
+  CFLAGS=$save_CFLAGS
+  CPPFLAGS=$save_CPPFLAGS
+  LIBS=$save_LIBS
+else
+  if test "x$with_Judy" = "xyes"; then
+    AC_MSG_ERROR([Judy dynamic arrays library missing.])
+  else
+    AC_CHECK_FUNCS([tdestroy],,
+      [AC_MSG_ERROR([Required tdestroy() or Judy dynamic arrays.])]
+    )
+  fi
+fi
 
 # Test coverage build
 AC_MSG_CHECKING([whether to build for test coverage])

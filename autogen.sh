@@ -34,7 +34,7 @@ autoreconf -sfi
 exit $?
 unlink po/Makevars.template
 
-for d in /usr /usr/local /opt/gettext /opt/local/share/gettext \
+for d in /usr /usr/local /opt/gettext /opt/local \
 		/usr/pkg "$HOME"; do
 	if test -f "$d/share/gettext/gettext.h" ; then
 		cp -f -- "$d/share/gettext/gettext.h" include/gettext.h
@@ -48,10 +48,6 @@ echo "Error: can't find <gettext.h> convenience C header."
 echo "Please put a link to it by hand as include/gettext.h"
 exit 1
 }
-sed \
-	-e 's,!__STRICT_ANSI__,!defined(__STRICT_ANSI__),g' \
-	-e 's,if ENABLE_NLS,ifdef ENABLE_NLS,g' \
-	-i include/gettext.h
 
 echo ""
 echo "Type \`./configure' to configure the package for your system"

@@ -50,7 +50,8 @@ libteredo_la_SOURCES += \
 	libteredo/maintain.c libteredo/maintain.h \
 	libteredo/discovery.c libteredo/discovery.h
 endif
-libteredo_la_DEPENDENCIES = libteredo/libteredo.sym libteredo-common.la
+libteredo_la_DEPENDENCIES = libteredo/libteredo.sym libteredo-common.la \
+	libcompat.la
 libteredo_la_LIBADD = \
 	libteredo-common.la libcompat.la \
 	$(LIBJUDY_LIBS) $(LIBRT) $(LTLIBINTL)

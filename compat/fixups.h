@@ -25,6 +25,15 @@
 
 #define MIREDO_COMPAT_FIXUPS_H 1
 
+#ifndef ENABLE_NLS
+# define ENABLE_NLS 0 /* avoid Wundef warnings in gettext.h */
+#endif
+
+//#define _( str )		dgettext (PACKAGE_NAME, str)
+//#define N_( str )		gettext_noop (str)
+#define _( str )		str
+#define N_( str )		str
+
 #ifdef __cplusplus
 # define EXTERN extern "C"
 #else
@@ -74,9 +83,3 @@ EXTERN int clock_nanosleep (clockid_t id, int flags,
 #ifndef HAVE_FDATASYNC
 EXTERN int fdatasync (int fd);
 #endif
-
-//#include <gettext.h>
-//#define _( str )		dgettext (PACKAGE_NAME, str)
-//#define N_( str )		gettext_noop (str)
-#define _(str)		((void) (PACKAGE_NAME), (const char *) (str))
-#define N_(str)		str

@@ -17,7 +17,7 @@
 # *  http://www.gnu.org/copyleft/gpl.html                               *
 # ***********************************************************************
 
-noinst_LTLIBRARIES += libteredo-common.la libteredo-server.la
+noinst_LTLIBRARIES += libteredo-common.la libteredo-server.la libteredo-test.la
 lib_LTLIBRARIES += libteredo.la
 bin_PROGRAMS = teredo-mire
 EXTRA_DIST += libteredo/libteredo.sym
@@ -82,6 +82,11 @@ libteredo_server_la_LDFLAGS = -no-undefined -static
 # libteredo-server is static given it hardly make sense to reuse it
 # outside miredo-server (which is itself way less commonly used
 # than miredo)
+
+libteredo_test_la_CFLAGS = $(libteredo_la_CFLAGS)
+libteredo_test_la_SOURCES = $(libteredo_la_SOURCES)
+libteredo_test_la_LIBADD = $(libteredo_la_LIBADD)
+libteredo_test_la_LDFLAGS = -no-undefined -static
 
 # teredo-mire
 teredo_mire_SOURCES = libteredo/mire.c

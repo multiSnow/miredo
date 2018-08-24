@@ -26,7 +26,7 @@ libmiredo_la_SOURCES = \
 	src/miredo.c src/miredo.h \
 	src/conf.c src/conf.h \
 	src/main.c
-libmiredo_la_LIBADD = $(LTLIBINTL) $(LIBCAP_LIBS) libcompat.la
+libmiredo_la_LIBADD = $(LTLIBINTL) libcompat.la
 libmiredo_la_LDFLAGS = -no-undefined -static
 #libmiredo_la_LDFLAGS = -no-undefined -release @VERSION@
 # libmiredo is dynamic only to reduce executables size (all the code is
@@ -37,7 +37,7 @@ libmiredo_la_LDFLAGS = -no-undefined -static
 # miredo
 miredo_SOURCES = src/relayd.c
 miredo_LDADD = libtun6.la libteredo.la libmiredo.la \
-		$(LIBRT) $(LIBINTL)
+		$(LIBRT) $(LIBCAP_LIBS) $(LIBINTL)
 
 # privproc
 miredo_privproc_SOURCES = src/privproc.c src/privproc.h
@@ -49,7 +49,7 @@ endif
 
 # miredo-server
 miredo_server_SOURCES = src/serverd.c
-miredo_server_LDADD = libteredo-server.la libmiredo.la $(LIBINTL)
+miredo_server_LDADD = libteredo-server.la libmiredo.la $(LIBCAP_LIBS) $(LIBINTL)
 
 # miredo-checkconf
 miredo_checkconf_SOURCES = src/checkconf.c

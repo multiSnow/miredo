@@ -24,12 +24,14 @@ AC_COPYRIGHT([Copyright (C) 2004-2014 Remi Denis-Courmont])
 AC_INIT([miredo],[1.3.0])
 AC_PREREQ(2.59c)
 
-AC_CONFIG_SRCDIR(src/miredo.c)
+AS_MESSAGE(checking system...)
+AC_CONFIG_SRCDIR(configure.ac)
 AC_CONFIG_AUX_DIR([admin])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_LIBOBJ_DIR([compat])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CANONICAL_HOST
 
 
 # Checks for programs.
@@ -102,6 +104,8 @@ AS_IF([test "${PTHREAD_LDFAGS}${PTHREAD_LIBS}"], [
 	AC_CHECK_LIB(pthread, pthread_create)
 ])
 
+AC_DEFINE_UNQUOTED(PACKAGE_HOST, "$host",
+                   [Define to the canonical host-system name])
 
 
 # Checks for header files.
